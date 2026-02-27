@@ -79,6 +79,15 @@ Access:
 - Prometheus: `http://localhost:9090`
 - Grafana: `http://localhost:3000`
 
+## Screenshots
+Public-safe screenshots currently included:
+- `docs/assets/prompt_validinput.png`
+- `docs/assets/metrics_dahsboard.png`
+
+Reference markdown:
+- `![Chat UI](docs/assets/prompt_validinput.png)`
+- `![Grafana Overview](docs/assets/metrics_dahsboard.png)`
+
 ## Evaluation Metrics
 - `exact_match`
 - `keyword_coverage`
