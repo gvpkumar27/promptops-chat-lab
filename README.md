@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# promptops-chat-lab
-Secure Prompt Engineering Chat Lab with local LLMs, guardrails, evaluation benchmarks, and internal observability via Streamlit, Ollama, Prometheus, and Grafana.
-=======
 # PromptOps Evaluation Lab
 
 PromptOps Evaluation Lab is a local-first PromptOps platform for secure prompt experimentation, runtime guardrails, and evaluation reporting.
@@ -106,4 +102,3 @@ Access:
 - `policies/`: public-safe guardrail template
 - `monitoring/`: Prometheus and Grafana configuration
 - `docs/`: lab and evaluation documentation
->>>>>>> accb19b (PromptOps chat lab for hands-on use: improved guardrails, observability, and release-ready documentation)
