@@ -1,0 +1,80 @@
+﻿services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  ollama-init:
+    image: ollama/ollama:latest
+    depends_on:
+      - ollama
+    entrypoint: ["/bin/sh", "-lc", "sleep 5; ollama pull llama3.2:1b"]
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+
+  evaluator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=llama3.2:1b
+      - PROMPTOPS_SYSTEM_PROMPT_PATH=${PROMPTOPS_SYSTEM_PROMPT_PATH:?Set PROMPTOPS_SYSTEM_PROMPT_PATH}
+      - PROMPTOPS_POLICY_PATH=${PROMPTOPS_POLICY_PATH:?Set PROMPTOPS_POLICY_PATH}
+      - PROMPTOPS_STRICT_GUARDRAILS=true
+    command: ["python", "scripts/run_eval.py", "--model", "llama3.2:1b"]
+
+  chat-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=llama3.2:1b
+      - PROMPTOPS_SYSTEM_PROMPT_PATH=${PROMPTOPS_SYSTEM_PROMPT_PATH:?Set PROMPTOPS_SYSTEM_PROMPT_PATH}
+      - PROMPTOPS_POLICY_PATH=${PROMPTOPS_POLICY_PATH:?Set PROMPTOPS_POLICY_PATH}
+      - PROMPTOPS_STRICT_GUARDRAILS=true
+      - PROM_METRICS_ENABLED=true
+      - PROM_METRICS_PORT=9108
+      - PROM_METRICS_BIND=0.0.0.0
+    command: ["streamlit", "run", "scripts/run_chat_ui.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports:
+      - "127.0.0.1:8501:8501"
+
+  prometheus:
+    image: prom/prometheus:v2.55.0
+    depends_on:
+      - chat-ui
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "127.0.0.1:9090:9090"
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    depends_on:
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD:?Set a strong GF_SECURITY_ADMIN_PASSWORD in your environment}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./monitoring/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "127.0.0.1:3000:3000"
+
+volumes:
+  ollama_data:
+  grafana_data:

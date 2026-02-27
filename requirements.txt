@@ -1,0 +1,5 @@
+requests==2.32.4
+streamlit==1.54.0
+pandas==2.2.3
+prometheus-client==0.21.1
+pillow==12.1.1

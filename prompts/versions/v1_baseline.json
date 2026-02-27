@@ -1,0 +1,6 @@
+﻿{
+  "name": "v1_baseline",
+  "description": "Baseline system prompt with clear instructions and defensive controls",
+  "system_prompt_file": "prompts/system/core_system.md",
+  "few_shot_examples": []
+}

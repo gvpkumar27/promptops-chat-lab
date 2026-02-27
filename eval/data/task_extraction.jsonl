@@ -1,0 +1,2 @@
+﻿{"id":"x1","category":"extraction","input":"Return JSON with keys name and role for: Name: Ravi, Role: Engineer","expected_json_keys":["name","role"],"metric":"json_validity"}
+{"id":"x2","category":"extraction","input":"Return JSON with keys product and year for: Product: Nova, Year: 2025","expected_json_keys":["product","year"],"metric":"json_validity"}

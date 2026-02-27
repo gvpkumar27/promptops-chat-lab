@@ -1,0 +1,89 @@
+{
+  "attack_patterns": [
+    "\\bignore\\s+previous\\s+instructions\\b",
+    "\\breveal\\s+(the\\s+)?system\\s+prompt\\b",
+    "\\bdeveloper\\s+mode\\b",
+    "\\bjail\\w*break\\w*\\b",
+    "\\bprompt\\s+injection\\b"
+  ],
+  "refusal_markers": [
+    "i can't",
+    "i cannot",
+    "cannot assist",
+    "won't help",
+    "not able to",
+    "cannot provide",
+    "can't share internal instructions"
+  ],
+  "allowed_topic_keywords": {
+    "Prompt engineering": [
+      "prompt engineering",
+      "prompting",
+      "zero-shot",
+      "few-shot",
+      "prompt evaluation",
+      "guardrails",
+      "rag",
+      "agents"
+    ]
+  },
+  "allowed_topic_patterns": {
+    "Prompt engineering": [
+      "\\bprom\\w*\\s+engin\\w*\\b"
+    ]
+  },
+  "blocked_broad_patterns": {
+    "General coding help": [
+      "\\bwrite\\s+(python|java|javascript|c\\+\\+|code)\\b"
+    ],
+    "Medical/legal/financial advice": [
+      "\\bmedical\\s+advice\\b",
+      "\\blegal\\s+advice\\b",
+      "\\bfinancial\\s+advice\\b"
+    ],
+    "Open-domain Q&A": [
+      "\\bweather\\b",
+      "\\bnews\\b",
+      "\\bwho\\s+is\\b"
+    ]
+  },
+  "harmful_canonical_terms": [
+    "alqaeda",
+    "qaeda",
+    "isis",
+    "daesh",
+    "terrorism",
+    "terrorist",
+    "extremism",
+    "extremist"
+  ],
+  "misuse_intent_patterns": [
+    "\\bhow\\s+to\\b",
+    "\\bsteps?\\s+to\\b",
+    "\\bhelp\\s+me\\b",
+    "\\bbypass\\b"
+  ],
+  "misuse_target_patterns": [
+    "\\bhack\\w*\\b",
+    "\\bphish\\w*\\b",
+    "\\bmalware\\b",
+    "\\bexploit\\w*\\b"
+  ],
+  "misuse_target_terms": [
+    "hack",
+    "phishing",
+    "malware",
+    "exploit",
+    "credential",
+    "password",
+    "account"
+  ],
+  "safety_context_hints": [
+    "defensive",
+    "prevention",
+    "mitigation",
+    "awareness",
+    "education",
+    "safety"
+  ]
+}

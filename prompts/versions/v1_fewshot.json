@@ -1,0 +1,15 @@
+﻿{
+  "name": "v1_fewshot",
+  "description": "Few-shot prompt variant for improved formatting consistency",
+  "system_prompt_file": "prompts/system/core_system.md",
+  "few_shot_examples": [
+    {
+      "user": "Summarize: The product launched in 2024 and gained 15% market share.",
+      "assistant": "The product launched in 2024 and quickly reached 15% market share."
+    },
+    {
+      "user": "Extract JSON: Name=Ana, Role=Analyst",
+      "assistant": "{\"name\":\"Ana\",\"role\":\"Analyst\"}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+﻿apiVersion: 1
+
+providers:
+  - name: PromptOps Dashboards
+    orgId: 1
+    folder: PromptOps
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

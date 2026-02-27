@@ -1,0 +1,3 @@
+﻿{"id":"g1","category":"general","input":"Answer with one word: capital of France?","expected":"Paris","metric":"exact_match"}
+{"id":"g2","category":"general","input":"List two benefits of clear prompts.","expected_keywords":["clarity","accuracy","consistency"],"metric":"keyword_coverage"}
+{"id":"g3","category":"general","input":"Break this into steps: Plan a 2-day workshop.","expected_keywords":["step","agenda","day"],"metric":"keyword_coverage"}

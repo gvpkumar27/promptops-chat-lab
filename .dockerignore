@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+.venu
+__pycache__
+*.pyc
+.env
+.env.*
+!.env.example
+eval/results
+*.log
+.DS_Store
